@@ -10,6 +10,20 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+ model User{
+    id      Int     @id @default(autoincrement())
+    phone   String  @unique @db.VarChar(20)
+    name   String  @db.VarChar(100)
+    age    Int @db.SmallInt
+    address String   @db.VarChar(255)
+    longitude Float
+    latitude Float
+    password String  @db.VarChar(100)
+    isVerified Boolean @default(false)
+    token    String? @db.VarChar(100)
+    @@map("users")
+ }
