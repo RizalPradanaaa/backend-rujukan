@@ -25,5 +25,8 @@ datasource db {
     password String  @db.VarChar(100)
     isVerified Boolean @default(false)
     token    String? @db.VarChar(100)
+    kodeOtp String?  @db.VarChar(10)
+    otpExpiresAt   DateTime?
+    otpAttempts    Int      @default(0)
     @@map("users")
  }
