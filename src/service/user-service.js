@@ -23,18 +23,13 @@ const register = async (request) => {
 
   user.password = await bcrypt.hash(user.password, 10);
 
-  return prismaClient.user.create({
+  await prismaClient.user.create({
     data: user,
-    select: {
-      phone: true,
-      name: true,
-      age: true,
-      address: true,
-      longitude: true,
-      latitude: true,
-      password: true,
-    },
   });
+
+  return {
+    message: "Berhasil Registrasi, Silahkan verifikasi nomor telepon Anda",
+  };
 };
 
 const login = async (request) => {
